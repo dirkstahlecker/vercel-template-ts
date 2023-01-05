@@ -16,7 +16,9 @@
     "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-bootstrap": "^1.0.1",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
+    "react-tabs": "^6.0.0"
   },
   "devDependencies": {
     "typescript": "^4.9.4"

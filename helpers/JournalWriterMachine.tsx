@@ -2,8 +2,8 @@ import * as React from "react";
 import {observable, action, computed, makeObservable} from "mobx";
 import {MarkupUtils} from "../helpers/MarkupUtils";
 import {NameReference} from "../helpers/NameReference";
-import NamePickerModal, { NamePickerModalMachine } from "../pages/NamePickerModal";
-import { AddMarkupMachine } from "../pages/AddMarkupToExistingEntry";
+import NamePickerModal, { NamePickerModalMachine } from "../components/NamePickerModal";
+import { AddMarkupMachine } from "../components/AddMarkupToExistingEntry";
 
 export class JournalWriterMachine
 {

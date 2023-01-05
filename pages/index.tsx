@@ -3,8 +3,8 @@ import {observer} from "mobx-react";
 import { AppMachine } from '../helpers/AppMachine';
 import {makeObservable, observable, runInAction, action} from "mobx";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { JournalWriter } from './JournalWriter';
-import { JournalReader } from './JournalReader';
+import { JournalWriter } from '../components/JournalWriter';
+import { JournalReader } from '../components/JournalReader';
 
 export interface AppProps
 {

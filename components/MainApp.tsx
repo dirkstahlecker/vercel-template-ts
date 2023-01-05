@@ -20,7 +20,6 @@ class MainApp extends React.Component<MainAppProps>
   constructor(props: MainAppProps)
   {
     super(props);
-    this.handleSubmit(null);
   }
 
   private async getFullNameForDisplayName(): Promise<void>

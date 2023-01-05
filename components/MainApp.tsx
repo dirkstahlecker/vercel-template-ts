@@ -114,13 +114,13 @@ class MainApp extends React.Component<MainAppProps>
         <Tabs>
           <TabList>
             <Tab>
+              Write
+            </Tab>
+            <Tab>
               Test
             </Tab>
             <Tab>
               Upload
-            </Tab>
-            <Tab>
-              Write
             </Tab>
             <Tab>
               Read
@@ -137,6 +137,9 @@ class MainApp extends React.Component<MainAppProps>
           </TabList>
 
           <TabPanel>
+            <JournalWriter machine={this.machine.journalWriterMachine}/>
+          </TabPanel>
+          <TabPanel>
             <button onClick={() => this.getFullNameForDisplayName()}>Test</button>&nbsp;
             <button onClick={() => this.fetchAllDbData()}>Get DB Data</button>
             <br/>
@@ -148,9 +151,6 @@ class MainApp extends React.Component<MainAppProps>
           <TabPanel>
             <input type="file" name="journal_path" onChange={this.onFileChange}/>
             <button onClick={this.onFileUpload}> Upload! </button>
-          </TabPanel>
-          <TabPanel>
-            <JournalWriter machine={this.machine.journalWriterMachine}/>
           </TabPanel>
           <TabPanel>
             <JournalReader machine={this.machine.journalReaderMachine}/>

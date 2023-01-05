@@ -2,11 +2,7 @@ import * as React from "react";
 import {observable, action, makeObservable} from "mobx";
 import {observer} from "mobx-react";
 import { JournalReaderMachine } from "../helpers/JournalReaderMachine";
-
-export interface JournalReaderProps
-{
-	machine: JournalReaderMachine;
-}
+import { JournalReaderProps } from "../helpers/JournalReaderProps";
 
 @observer
 export class JournalReader extends React.Component<JournalReaderProps>

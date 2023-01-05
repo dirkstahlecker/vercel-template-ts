@@ -3,11 +3,7 @@ import {observable, action, computed, makeObservable} from "mobx";
 import {observer} from "mobx-react";
 import {NamePickerModal} from "./NamePickerModal";
 import { JournalWriterMachine } from "../helpers/JournalWriterMachine";
-
-export interface JournalWriterProps
-{
-	machine: JournalWriterMachine;
-}
+import { JournalWriterProps } from "../helpers/JournalWriterProps";
 
 @observer
 export class JournalWriter extends React.Component<JournalWriterProps>

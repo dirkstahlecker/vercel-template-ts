@@ -1,0 +1,1 @@
+https://www.cockroachlabs.com/blog/tutorial-nextjs-vercel-cockroachdb/

@@ -9,13 +9,19 @@ import 'react-tabs/style/react-tabs.css';
 
 export interface MainAppProps
 {
-
+  
 }
 
 @observer
 class MainApp extends React.Component<MainAppProps>
 {
   private machine: AppMachine = new AppMachine();
+
+  constructor(props: MainAppProps)
+  {
+    super(props);
+    this.handleSubmit(null);
+  }
 
   private async getFullNameForDisplayName(): Promise<void>
   {
@@ -24,6 +30,21 @@ class MainApp extends React.Component<MainAppProps>
 
     console.log(fullNames);
   }
+
+  private handleSubmit = async (e: any) => {
+    // e.preventDefault();
+    const response = await fetch("/api/addFullName", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        firstName: "Dirk",
+        lastName: "Stahlecker"
+      })
+    });
+  };
 
   private async addDisplayName(): Promise<void>
   {

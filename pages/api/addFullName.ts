@@ -3,9 +3,8 @@ import { config } from "../../config";
 const pool = new Pool(config);
 
 export default async function handler(request, response) {
-  const { title, description, date, time } = request.body;
-  const query = `INSERT INTO events (title, description, event_date, event_time)
-VALUES ('${title}', '${description}', '${date}', '${time}');`;
+  const {firstName, lastName} = request.body;
+  const query = `INSERT INTO names.firstlast (firstname, lastname) VALUES ('${firstName}', '${lastName}');`;
 
   try {
     const client = await pool.connect();

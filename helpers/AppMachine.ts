@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeObservable, observable, runInAction, action} from "mobx";
-import { JournalReaderMachine } from './JournalReader';
-import { JournalWriterMachine } from './JournalWriter';
+import { JournalReaderMachine } from '../pages/JournalReader';
+import { JournalWriterMachine } from '../pages/JournalWriter';
 import {MarkupUtils} from "./MarkupUtils";
 
 export class AppMachine

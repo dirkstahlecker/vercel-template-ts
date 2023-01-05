@@ -2,8 +2,8 @@ import * as React from "react";
 // import {NameReference} from "./NameReference";
 import {observable, action, makeObservable} from "mobx";
 import {observer} from "mobx-react";
-import {MarkupUtils} from "./MarkupUtils";
-import {Markup} from "./Markup";
+import {MarkupUtils} from "../helpers/MarkupUtils";
+import {Markup} from "../helpers/Markup";
 
 export interface JournalReaderProps
 {

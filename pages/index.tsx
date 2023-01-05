@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from "mobx-react";
-import { AppMachine } from './AppMachine';
+import { AppMachine } from '../helpers/AppMachine';
 import {makeObservable, observable, runInAction, action} from "mobx";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { JournalWriter } from './JournalWriter';

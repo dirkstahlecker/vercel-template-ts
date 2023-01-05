@@ -1,9 +1,9 @@
 import * as React from "react";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
-import {NameReference} from "./NameReference";
+import {NameReference} from "../helpers/NameReference";
 import {NamePickerModal, NamePickerModalMachine} from "./NamePickerModal";
-import {MarkupUtils} from "./MarkupUtils";
+import {MarkupUtils} from "../helpers/MarkupUtils";
 
 export class AddMarkupMachine
 {

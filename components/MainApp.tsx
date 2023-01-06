@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { JournalWriter } from './JournalWriter';
 import { JournalReader } from './JournalReader';
 import 'react-tabs/style/react-tabs.css';
+import { API } from '../helpers/API';
 
 export interface MainAppProps
 {
@@ -20,6 +21,9 @@ class MainApp extends React.Component<MainAppProps>
   constructor(props: MainAppProps)
   {
     super(props);
+
+    // API.getLastNamesForFirstName("Dirk2");
+    // API.addNameToDatabase("Dirk2", "Stahlecker");
   }
 
   private async getFullNameForDisplayName(): Promise<void>
@@ -30,46 +34,33 @@ class MainApp extends React.Component<MainAppProps>
     console.log(fullNames);
   }
 
-  private handleSubmit = async (e: any) => {
-    // e.preventDefault();
-    const response = await fetch("/api/addFullName", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        firstName: "Dirk",
-        lastName: "Stahlecker"
-      })
-    });
-  };
 
-  private async addDisplayName(): Promise<void>
-  {
-    const data = {
-      displayname: "dirk",
-      firstname: "dirk2",
-      lastname: "stahlecker2"
-    };
 
-    const testDataRaw = await fetch('/api/displayName/add', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      // mode: 'cors', // no-cors, *cors, same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      // credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      // redirect: 'follow', // manual, *follow, error
-      // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    const td = await testDataRaw.json();
+  // private async addDisplayName(): Promise<void>
+  // {
+  //   const data = {
+  //     displayname: "dirk",
+  //     firstname: "dirk2",
+  //     lastname: "stahlecker2"
+  //   };
 
-    // runInAction(() => this.machine.testData = JSON.stringify(td));
-  }
+  //   const testDataRaw = await fetch('/api/displayName/add', {
+  //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  //     // mode: 'cors', // no-cors, *cors, same-origin
+  //     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  //     // credentials: 'same-origin', // include, *same-origin, omit
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //       // 'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     // redirect: 'follow', // manual, *follow, error
+  //     // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  //     body: JSON.stringify(data) // body data type must match "Content-Type" header
+  //   });
+  //   const td = await testDataRaw.json();
+
+  //   // runInAction(() => this.machine.testData = JSON.stringify(td));
+  // }
 
   private async fetchAllDbData(): Promise<void>
   {

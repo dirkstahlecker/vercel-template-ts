@@ -22,8 +22,8 @@ class MainApp extends React.Component<MainAppProps>
   {
     super(props);
 
-    // API.getLastNamesForFirstName("Dirk2");
-    // API.addNameToDatabase("Dirk2", "Stahlecker");
+    // API.getNamesForDisplayName("Dirk");
+    API.addNameToDatabase("Dirk", "Dirk", "Stahlecker");
   }
 
   private async getFullNameForDisplayName(): Promise<void>
@@ -32,47 +32,6 @@ class MainApp extends React.Component<MainAppProps>
     const fullNames = await raw.json();
 
     console.log(fullNames);
-  }
-
-
-
-  // private async addDisplayName(): Promise<void>
-  // {
-  //   const data = {
-  //     displayname: "dirk",
-  //     firstname: "dirk2",
-  //     lastname: "stahlecker2"
-  //   };
-
-  //   const testDataRaw = await fetch('/api/displayName/add', {
-  //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-  //     // mode: 'cors', // no-cors, *cors, same-origin
-  //     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  //     // credentials: 'same-origin', // include, *same-origin, omit
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //       // 'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //     // redirect: 'follow', // manual, *follow, error
-  //     // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  //     body: JSON.stringify(data) // body data type must match "Content-Type" header
-  //   });
-  //   const td = await testDataRaw.json();
-
-  //   // runInAction(() => this.machine.testData = JSON.stringify(td));
-  // }
-
-  private async fetchAllDbData(): Promise<void>
-  {
-    const testDataRaw = await fetch('/api/fullNames/all');
-    const td = await testDataRaw.json();
-
-    runInAction(() => this.machine.testData = JSON.stringify(td));
-  }
-
-  componentDidMount()
-  {
-    // this.fetchData();
   }
 
   onFileChange = (e: any) => { //TODO
@@ -151,8 +110,8 @@ class MainApp extends React.Component<MainAppProps>
             <JournalWriter machine={this.machine.journalWriterMachine}/>
           </TabPanel>
           <TabPanel>
-            <button onClick={() => this.getFullNameForDisplayName()}>Test</button>&nbsp;
-            <button onClick={() => this.fetchAllDbData()}>Get DB Data</button>
+            {/* <button onClick={() => this.getFullNameForDisplayName()}>Test</button>&nbsp; */}
+            {/* <button onClick={() => this.fetchAllDbData()}>Get DB Data</button> */}
             <br/>
             {
               this.machine.testData != null &&

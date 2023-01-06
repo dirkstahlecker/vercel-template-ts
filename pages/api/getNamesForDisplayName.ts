@@ -4,13 +4,14 @@ const pool = new Pool(config);
 
 /**
  * Get all last names for a given first name
- * @param request firstName
+ * @param request displayName
  * @param response 
  */
 export default async function handler(request, response) {
-  const {firstName} = request.body;
-  // const query = `SELECT DISTINCT lastname FROM names.firstlast WHERE firstname='${firstName}';`;
-  const query = `SELECT lastname FROM names.firstlast WHERE firstname='${firstName}';`;
+  const {displayName} = request.body;
+  // const query = `SELECT DISTINCT lastname FROM names.firstlast WHERE displayname='${displayName}';`;
+
+  const query = `SELECT * FROM names.firstlast WHERE displayname='${displayName}';`;
 
   try {
     const client = await pool.connect();

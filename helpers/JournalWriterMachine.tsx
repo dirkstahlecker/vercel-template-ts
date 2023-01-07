@@ -1,5 +1,5 @@
 import * as React from "react";
-import {observable, action, computed, makeObservable, reaction} from "mobx";
+import {observable, action, computed, makeObservable, reaction, runInAction} from "mobx";
 import {MarkupUtils} from "../helpers/MarkupUtils";
 import {NameReference} from "../helpers/NameReference";
 import NamePickerModal, { NamePickerModalMachine } from "../components/NamePickerModal";
@@ -17,20 +17,13 @@ export class JournalWriterMachine
     makeObservable(this);
   }
 
-	@observable
-	public journalText: string = "";
+	@observable public journalText: string = "";
+	@observable private _currentName: string | null = null;
+	@observable public finalText: string = "";
+	@observable private dateStr: string = "";
+	@observable public isDeepDiveEntry: boolean = this.suggestDeepDive;
+	@observable public currentModalLastNames: string[] = [];
 
-	@observable
-	private _currentName: string | null = null;
-
-	@observable
-	public finalText: string = "";
-
-	@observable
-	private dateStr: string = "";
-
-	@observable
-	public isDeepDiveEntry: boolean = this.suggestDeepDive;
 
 	public modalObj: NamePickerModal | null = null;
 
@@ -59,9 +52,12 @@ export class JournalWriterMachine
 		this._currentName = value;
 		//need to fire off the RPC to get last names from this display name
 
-		API.getNamesForDisplayName(value).then((names: string[]) => {
-			console.log(names);
-		});
+		if (value !== null)
+		{
+			API.getNamesForDisplayName(value).then((names: string[]) => {
+				runInAction(() => this.currentModalLastNames = names);
+			});
+		}
 	}
 
 	@action

@@ -22,6 +22,7 @@ export class JournalWriter extends React.Component<JournalWriterProps>
 				isOpen={this.props.machine.showModal}
 				currentName={this.props.machine.currentName == null ? "" : this.props.machine.currentName}
 				ref={(x) => this.props.machine.modalObj = x}
+				currentModalLastNames={this.machine.currentModalLastNames}
 			/>
 
 			<label htmlFor="dateEntry">Date: </label>

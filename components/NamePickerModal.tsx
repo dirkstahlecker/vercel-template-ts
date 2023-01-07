@@ -9,7 +9,6 @@ export class NamePickerModalMachine
   @observable public lastName: string = "";
   @observable public realFirstName: string | null = null;
   @observable public submitClicked: boolean = false;
-  @observable public lastNameOptions: string[] = [];
 
   public setSubmitClicked = (value: boolean): void => {
     this.submitClicked = value;
@@ -25,12 +24,6 @@ export class NamePickerModalMachine
 
   public lastNameTxtInput: any;
   public realFirstNameTxtInput: any;
-
-  // public async getLastNames(displayName: string): Promise<void>
-  // {
-
-  //   runInAction(() => this.lastNameOptions = names);
-  // }
 }
 
 export interface NamePickerModalProps
@@ -39,6 +32,7 @@ export interface NamePickerModalProps
   onRequestClose: (commit: boolean) => void;
   isOpen: boolean;
   currentName: string;
+  currentModalLastNames: string[];
   context?: string; //currently unused, probably won't ever be used
 }
 
@@ -78,8 +72,8 @@ export class NamePickerModal extends React.Component<NamePickerModalProps>
             </>
           }
           {
-            this.props.machine.lastNameOptions.map((name: string) => {
-              return <>{name}</>
+            this.props.currentModalLastNames.map((name: string) => {
+              return <>{name}<br/></>
             })
           }
           Last name:&nbsp;

@@ -2,6 +2,10 @@ export class API
 {
   private static cleanInput(value: string): string
   {
+    if (!value)
+    {
+      return value;
+    }
     return value.toLowerCase();
   }
 

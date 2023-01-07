@@ -91,6 +91,7 @@ export class JournalWriterMachine
 		{
 		  throw Error("name shouldn't be null");
 		}
+
 		//take the last name given by the user and insert the proper markup into the box itself
 		let realFirstName: string | null = this.namePickerModalMachine.realFirstName;
 		const markup: string = MarkupUtils.makeMarkup(realFirstName != null ? realFirstName : this.currentName, this.namePickerModalMachine.lastName, this.currentName);
@@ -99,10 +100,16 @@ export class JournalWriterMachine
 		//add the markup in place of the name
 		this.journalText = previousJournalText.substring(0, textLen - this.currentName.length - 1) + markup +  previousJournalText.substring(textLen - 1, textLen);
 
+		//add the new first and last names to the database (if they're already there they won't be added)
+		const displayName = this.currentName;
+		const lastName = this.namePickerModalMachine.lastName;
+		API.addNameToDatabase(displayName, realFirstName ?? displayName, lastName);
+
 		//clean up
 		this.currentName = null; //close the modal
 		this.namePickerModalMachine.lastName = ""; //reset
 		this.namePickerModalMachine.realFirstName = null;
+		this.currentModalLastNames = [];
 	}
 
 	@action

@@ -9,6 +9,9 @@ import 'react-tabs/style/react-tabs.css';
 import { API } from '../helpers/API';
 
 //TODO: why are we loading everything twice?
+  //React might do this by default
+
+//TODO: capitalization - how to preserve?
 
 export interface MainAppProps
 {

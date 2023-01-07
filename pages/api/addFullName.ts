@@ -5,13 +5,6 @@ const pool = new Pool(config);
 export default async function handler(request, response) {
   const {firstName, lastName, displayName} = request.body;
 
-  console.log(displayName)
-  console.log(firstName)
-  console.log(lastName)
-
-  // const query = `INSERT INTO names.firstlast (firstname, lastname) VALUES ('${firstName}', '${lastName}');`;
-
-  //experimenting with inserting if not exists
   const query = `INSERT INTO names.firstlast (displayname, firstname, lastname) 
   SELECT '${displayName}', '${firstName}', '${lastName}' WHERE
   NOT EXISTS (

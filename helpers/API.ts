@@ -1,6 +1,15 @@
 export class API
 {
+  private static cleanInput(value: string): string
+  {
+    return value.toLowerCase();
+  }
+
   public static addNameToDatabase = async (displayname: string, firstName: string, lastName: string) => {
+    displayname = this.cleanInput(displayname);
+    firstName = this.cleanInput(firstName);
+    lastName = this.cleanInput(lastName);
+
     const response = await fetch("/api/addFullName", {
       method: "POST",
       headers: {
@@ -15,7 +24,9 @@ export class API
     });
   };
 
-  public static getNamesForDisplayName = async (displayname: string) => {
+  public static getNamesForDisplayName = async (displayname: string): Promise<string[]> => {
+    displayname = this.cleanInput(displayname);
+
     const response = await fetch("/api/getNamesForDisplayName", {
       method: "POST",
       headers: {
@@ -23,8 +34,15 @@ export class API
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        displayname: displayname
+        displayName: displayname
       })
+    });
+
+    const raw = await response.json();
+    const rows = raw.message;
+
+    return rows.map((row: {lastname: string}) => {
+      return row.lastname;
     });
   };
 }

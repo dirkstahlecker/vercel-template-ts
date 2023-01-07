@@ -1,16 +1,15 @@
 import * as React from "react";
-import {observable} from "mobx";
+import {observable, runInAction} from "mobx";
 import {observer} from "mobx-react";
-import Modal from 'react-modal';
+import Modal from "react-modal";
+import { API } from "../helpers/API";
 
 export class NamePickerModalMachine
 {  
-  @observable
-  public lastName: string = "";
-  @observable
-  public realFirstName: string | null = null;
-  @observable
-  public submitClicked: boolean = false;
+  @observable public lastName: string = "";
+  @observable public realFirstName: string | null = null;
+  @observable public submitClicked: boolean = false;
+  @observable public lastNameOptions: string[] = [];
 
   public setSubmitClicked = (value: boolean): void => {
     this.submitClicked = value;
@@ -27,6 +26,11 @@ export class NamePickerModalMachine
   public lastNameTxtInput: any;
   public realFirstNameTxtInput: any;
 
+  // public async getLastNames(displayName: string): Promise<void>
+  // {
+
+  //   runInAction(() => this.lastNameOptions = names);
+  // }
 }
 
 export interface NamePickerModalProps
@@ -54,11 +58,6 @@ export class NamePickerModal extends React.Component<NamePickerModalProps>
     }
   };
 
-  componentDidMount()
-  {
-    // this.props.machine.lastNameTxtInput.focus();
-  }
-
   render()
   {
     return (
@@ -77,6 +76,11 @@ export class NamePickerModal extends React.Component<NamePickerModalProps>
               <br />
               <br />
             </>
+          }
+          {
+            this.props.machine.lastNameOptions.map((name: string) => {
+              return <>{name}</>
+            })
           }
           Last name:&nbsp;
           <input type="text" 

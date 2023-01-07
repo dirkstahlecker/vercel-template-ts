@@ -9,13 +9,14 @@ const pool = new Pool(config);
  */
 export default async function handler(request, response) {
   const {displayName} = request.body;
-  // const query = `SELECT DISTINCT lastname FROM names.firstlast WHERE displayname='${displayName}';`;
+  const query = `SELECT DISTINCT lastname FROM names.firstlast WHERE displayname='${displayName}';`;
 
-  const query = `SELECT * FROM names.firstlast WHERE displayname='${displayName}';`;
+  // const query = `SELECT firstname, lastname FROM names.firstlast WHERE displayname='${displayName}';`;
 
   try {
     const client = await pool.connect();
     const result = await client.query(query);
+    console.log(result)
     response.json({
       message: result.rows
     });

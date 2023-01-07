@@ -1,9 +1,10 @@
 import * as React from "react";
-import {observable, action, computed, makeObservable} from "mobx";
+import {observable, action, computed, makeObservable, reaction} from "mobx";
 import {MarkupUtils} from "../helpers/MarkupUtils";
 import {NameReference} from "../helpers/NameReference";
 import NamePickerModal, { NamePickerModalMachine } from "../components/NamePickerModal";
 import { AddMarkupMachine } from "../components/AddMarkupToExistingEntry";
+import { API } from "./API";
 
 export class JournalWriterMachine
 {
@@ -20,7 +21,7 @@ export class JournalWriterMachine
 	public journalText: string = "";
 
 	@observable
-	public currentName: string | null = null;
+	private _currentName: string | null = null;
 
 	@observable
 	public finalText: string = "";
@@ -47,10 +48,20 @@ export class JournalWriterMachine
 		this.finalText = this.dateStr + ": " + deepDiveText + " " + this.journalText;
 	}
 
-	@action
-	public setCurrentName(value: string | null): void
+	@computed
+	public get currentName(): string | null
 	{
-		this.currentName = value;
+		return this._currentName;
+	}
+
+	public set currentName(value: string | null)
+	{
+		this._currentName = value;
+		//need to fire off the RPC to get last names from this display name
+
+		API.getNamesForDisplayName(value).then((names: string[]) => {
+			console.log(names);
+		});
 	}
 
 	@action

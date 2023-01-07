@@ -8,6 +8,8 @@ import { JournalReader } from './JournalReader';
 import 'react-tabs/style/react-tabs.css';
 import { API } from '../helpers/API';
 
+//TODO: why are we loading everything twice?
+
 export interface MainAppProps
 {
   
@@ -21,17 +23,6 @@ class MainApp extends React.Component<MainAppProps>
   constructor(props: MainAppProps)
   {
     super(props);
-
-    // API.getNamesForDisplayName("Dirk");
-    API.addNameToDatabase("Dirk", "Dirk", "Stahlecker");
-  }
-
-  private async getFullNameForDisplayName(): Promise<void>
-  {
-    const raw = await fetch('/api/fullNames/all');
-    const fullNames = await raw.json();
-
-    console.log(fullNames);
   }
 
   onFileChange = (e: any) => { //TODO

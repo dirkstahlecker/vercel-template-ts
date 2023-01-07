@@ -151,6 +151,7 @@ export class AddMarkupToExistingEntry extends React.Component<AddMarkupProps>
         onRequestClose={() => this.props.machine.handleModalCloseRequest()}
         isOpen={this.props.machine.currentName != null}
         currentName={this.props.machine.currentName == null ? "" : this.props.machine.currentName}
+        currentModalLastNames={[]} //TODO
       />
       Paste old entry here:<br />
       <textarea id="oldEntry" 

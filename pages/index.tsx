@@ -7,8 +7,6 @@ export default function Home()
     <Head>
       <title>Dirk Trackchasing</title>
     </Head>
-    <React.StrictMode>
-      HELLO WORLD
-    </React.StrictMode>
+    HELLO WORLD
   </>
 }
